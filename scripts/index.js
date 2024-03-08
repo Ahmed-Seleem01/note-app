@@ -6,9 +6,9 @@ const asideRows = document.querySelectorAll('.aside__row');
 
 asideRows.forEach((row) => {
   row.addEventListener('click', (e) => {
-    const active = document.querySelector('.aside__mark-box--active');
-    active.classList.remove('aside__mark-box--active');
-    e.currentTarget.querySelector('.aside__mark-box').classList.add('aside__mark-box--active');
+    const active = document.querySelector('.aside__row--active');
+    active.classList.remove('aside__row--active');
+    e.currentTarget.classList.add('aside__row--active');
   });
 });
 
