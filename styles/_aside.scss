@@ -1,0 +1,61 @@
+.aside {
+  padding: 2rem 1.6rem;
+  background-color: var(--color-light-gray);
+  width: 26rem;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  transform: translateX(-27rem);
+
+  body::has(".container--moved") {
+    transform: translateX(0rem);
+  }
+
+  &__close-icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-bottom: 4rem;
+    cursor: pointer;
+  }
+
+  &__close-bar {
+    width: 100%;
+    height: 0.1rem;
+    background-color: var(--color-very-dark-gray);
+
+    &:first-of-type {
+      transform: translateY(0.6rem) rotateZ(45deg);
+    }
+    &:last-of-type {
+      transform: translateY(0.5rem) rotateZ(-45deg);
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 2.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  &__second-row {
+    color: var(--color-gray);
+  }
+
+  &__mark-box {
+    width: 0.3rem;
+    height: 100%;
+
+    &--active {
+      background-color: var(--color-orange);
+    }
+  }
+
+  &__title {
+    // max-width: 50%;
+  }
+}
