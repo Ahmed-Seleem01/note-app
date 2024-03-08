@@ -1,15 +1,18 @@
+@use "mixins";
+
 .container {
-  // @include mixins.flex-style(column, $align-items: center);
+  max-width: 32rem;
+  width: 100%;
   min-height: 100vh;
   color: var(--dark-grayish-blue);
   padding: 0 1.6rem;
   font-family: Inter, sans-serif;
   font-size: 1.6rem;
   font-weight: 400;
-  // overflow-x: hidden;
+  margin: 0 auto;
   transition: transform var(--transition-timing) ease;
 
   &--moved {
-    transform: translateX(27rem);
+    transform: translateX(23rem);
   }
 }

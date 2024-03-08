@@ -7,10 +7,10 @@
   z-index: 1;
   top: 0;
   left: 0;
-  transform: translateX(-27rem);
+  transform: translateX(-27.5rem);
 
   body::has(".container--moved") {
-    transform: translateX(0rem);
+    transform: translateX(-4rem);
   }
 
   &__close-icon {

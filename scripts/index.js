@@ -1,6 +1,12 @@
 const menuIcon = document.querySelector('.header__menu-icon');
 const container = document.querySelector('.container');
 const closeIcon = document.querySelector('.aside__close-icon');
+const searchIcon = document.querySelector('.header__search-icon');
+const searchContainer = document.querySelector('.header__search-container');
+
+searchIcon.addEventListener('click', () => {
+  searchContainer.classList.toggle('header__search-container--active');
+});
 
 const asideRows = document.querySelectorAll('.aside__row');
 
