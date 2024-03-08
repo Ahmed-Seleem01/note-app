@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Note App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aclonica&family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="./styles/style.scss" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header__menu-icon">
+          <div class="header__menu-bar"></div>
+          <div class="header__menu-bar"></div>
+          <div class="header__menu-bar"></div>
+        </div>
+        <h1 class="header__title">Almdrasa-Notes</h1>
+        <img
+          src="./images/search-icon.svg"
+          alt="search-icon"
+          class="header__search-icon"
+        />
+      </header>
+
+      <aside class="aside">
+        <div class="aside__close-icon">
+          <div class="aside__close-bar"></div>
+          <div class="aside__close-bar"></div>
+        </div>
+        <div class="aside__row aside__first-row">
+          <div class="aside__mark-box aside__mark-box--active"></div>
+          <h2 class="aside__title">Notes</h2>
+        </div>
+        <div class="aside__row aside__second-row">
+          <div class="aside__mark-box"></div>
+          <h2 class="aside__title">Add Notes</h2>
+        </div>
+      </aside>
+
+      <main class="main"></main>
+
+      <footer class="footer"></footer>
+    </div>
+    <script type="module" src="./scripts/script.js"></script>
+  </body>
+</html>
