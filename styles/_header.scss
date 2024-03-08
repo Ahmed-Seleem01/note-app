@@ -1,0 +1,35 @@
+@use "mixins";
+
+.header {
+  @include mixins.flex-style(
+    $justify-content: space-between,
+    $align-items: center
+  );
+  padding: var(--default-padding) 0;
+
+  &__menu-icon {
+    width: 2rem;
+    height: 1.5rem;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  &__menu-bar {
+    width: 100%;
+    height: 0.2rem;
+    margin-bottom: 0.4rem;
+    background-color: var(--color-very-dark-gray);
+
+    &:last-of-type {
+      width: 50%;
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    color: var(--color-orange);
+    font-size: 1.5rem;
+    font-family: "Aclonica";
+    // line-height: 1.7rem;
+  }
+}
