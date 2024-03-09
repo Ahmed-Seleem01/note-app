@@ -54,8 +54,35 @@
         </div>
       </aside>
 
-      <main class="main"></main>
-
+      <main class="main">
+        <section class="section add">
+          <h2 class="section__title">Add Note</h2>
+          <div class="section__add-notes">
+            <label class="section__input-label" for="input-title">Title*</label>
+            <input class="section__input-title" id="input-title" type="text" />
+          </div>
+          <div class="section__add-notes">
+            <label class="section__input-label" for="input-author"
+              >Author*</label
+            >
+            <input
+              class="section__input-author"
+              id="input-author"
+              type="text"
+            />
+          </div>
+          <div class="section__add-notes">
+            <label class="section__input-label" for="input-note"
+              >Your Note*</label
+            >
+            <textarea class="section__input-note" id="input-title"></textarea>
+          </div>
+          <div class="section__add-buttons">
+            <button class="section__add-button">Add Note</button
+            ><button class="section__add-button">Add Pinned Note</button>
+          </div>
+        </section>
+      </main>
       <footer class="footer"></footer>
     </div>
     <script type="module" src="./scripts/index.js"></script>

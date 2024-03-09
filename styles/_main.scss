@@ -1,0 +1,47 @@
+@use "mixins";
+
+%input-style {
+  height: 4.5rem;
+  width: 100%;
+  background-color: var(--color-light-gray);
+  border: none;
+  border-radius: var(--default-radius);
+}
+
+.section {
+  @include mixins.flex-style(column, $gap: 3.5rem);
+  margin-top: 6rem;
+
+  &__title {
+    font-size: 2.6rem;
+  }
+
+  &__input-label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: var(--color-gray);
+}
+
+  &__input-title,
+  &__input-author {
+    @extend %input-style;
+  }
+
+  &__input-note {
+    @extend %input-style;
+    height: 15rem;
+  }
+
+  &__add-buttons {
+    @include mixins.flex-style($justify-content: space-between);
+  }
+  &__add-button {
+    height: 4rem;
+    padding: 1rem 2rem;
+    font-size: 1.3rem;
+    color: var(--color-white);
+    background-color: var(--color-orange);
+    border-radius: var(--default-radius);
+  }
+}
