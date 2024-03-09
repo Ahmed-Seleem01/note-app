@@ -8,40 +8,67 @@
   border-radius: var(--default-radius);
 }
 
-.Add-Note {
-  @include mixins.flex-style(column, $gap: 3.5rem);
-  margin-top: 6rem;
-
-  &__title {
-    font-size: 2.6rem;
-  }
-
-  &__input-label {
-    display: block;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-    color: var(--color-gray);
+%heading {
+  font-size: 2.6rem;
+}
+%meta-info {
+  font-size: 1.3rem;
+  color: var(--color-gray);
 }
 
-  &__input-title,
-  &__input-author {
-    @extend %input-style;
+.main {
+  .section {
+    @include mixins.flex-style(column, $gap: 3.5rem);
+    margin-top: 6rem;
   }
 
-  &__input-note {
-    @extend %input-style;
-    height: 15rem;
+  .Add-Note {
+    &__title {
+      @extend %heading;
+    }
+
+    &__input-label {
+      display: block;
+      margin-bottom: 1rem;
+      @extend %meta-info;
+    }
+
+    &__input-title,
+    &__input-author {
+      @extend %input-style;
+    }
+
+    &__input-note {
+      @extend %input-style;
+      height: 15rem;
+    }
+
+    &__add-buttons {
+      @include mixins.flex-style($justify-content: space-between);
+    }
+    &__add-button {
+      height: 4rem;
+      padding: 1rem 2rem;
+      font-size: 1.3rem;
+      color: var(--color-white);
+      background-color: var(--color-orange);
+      border-radius: var(--default-radius);
+    }
   }
 
-  &__add-buttons {
-    @include mixins.flex-style($justify-content: space-between);
-  }
-  &__add-button {
-    height: 4rem;
-    padding: 1rem 2rem;
-    font-size: 1.3rem;
-    color: var(--color-white);
-    background-color: var(--color-orange);
-    border-radius: var(--default-radius);
+  .Note {
+    &__title {
+      @extend %heading;
+    }
+
+    &__info {
+      margin-top: 1.5rem;
+      @extend %meta-info;
+    }
+
+    &__paragraph {
+      margin-bottom: 0.6rem;
+      line-height: 2.7rem;
+    }
   }
 }
