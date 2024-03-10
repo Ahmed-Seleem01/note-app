@@ -1,13 +1,8 @@
-import { addNote, displayNote, note } from './generatedElements';
-
-const menuIcon = document.querySelector('.header__menu-icon');
-const asideElem = document.querySelector('.aside');
-const closeIcon = document.querySelector('.aside__close-icon');
-const searchIcon = document.querySelector('.header__search-icon');
-const searchContainer = document.querySelector('.header__search-container');
-const mainElement = document.querySelector('.main');
-const articleElements = document.querySelectorAll('.article');
-const asideRowElement = document.querySelector('.aside__row');
+import addNoteFeat from './addNote';
+import {
+  asideElem, asideRowElement, closeIcon, mainElement, menuIcon, searchContainer, searchIcon,
+} from './elements';
+import { Home, addNote, displayNote } from './generatedElements';
 
 mainElement.addEventListener('click', (e) => {
   if (e.target.parentElement.classList.contains('article')
@@ -28,22 +23,23 @@ searchIcon.addEventListener('click', () => {
 
 const asideRows = document.querySelectorAll('.aside__row');
 
-asideRows.forEach((row) => {
-  row.addEventListener('click', (e) => {
-    const asideElement = e.currentTarget;
-    const active = document.querySelector('.aside__row--active');
-    if (active) {
-      active.classList.remove('aside__row--active');
-    }
-    asideElement.classList.add('aside__row--active');
+// asideRows.forEach((row) => {
+//   row.addEventListener('click', (e) => {
+//     const asideElement = e.currentTarget;
+//     const active = document.querySelector('.aside__row--active');
+//     if (active) {
+//       active.classList.remove('aside__row--active');
+//     }
+//     asideElement.classList.add('aside__row--active');
 
-    if (asideElement.classList.contains('aside__first-row')) {
-      mainElement.innerHTML = note;
-    } else if (asideElement.classList.contains('aside__second-row')) {
-      mainElement.innerHTML = addNote;
-    }
-  });
-});
+//     if (asideElement.classList.contains('aside__first-row')) {
+//       mainElement.innerHTML = Home;
+//     } else if (asideElement.classList.contains('aside__second-row')) {
+//       mainElement.innerHTML = addNote;
+//       addNoteFeat();
+//     }
+//   });
+// });
 
 menuIcon.addEventListener('click', () => {
   asideElem.classList.toggle('aside--active');

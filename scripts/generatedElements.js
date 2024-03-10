@@ -1,8 +1,11 @@
+import { notesSection, pinnedNotesSection } from './elements';
+
 export const addNote = `<section class="section Add-Note">
 <h2 class="Add-Note__title">Add Note</h2>
+<form class="Add-Note__form">
 <div class="Add-Note__add-notes">
   <label class="Add-Note__input-label" for="input-title">Title*</label>
-  <input class="Add-Note__input-title" id="input-title" type="text" />
+  <input class="Add-Note__input-title" id="input-title" type="text" required/>
 </div>
 <div class="Add-Note__add-notes">
   <label class="Add-Note__input-label" for="input-author"
@@ -12,56 +15,77 @@ export const addNote = `<section class="section Add-Note">
     class="Add-Note__input-author"
     id="input-author"
     type="text"
+    required
   />
 </div>
 <div class="Add-Note__add-notes">
   <label class="Add-Note__input-label" for="input-note"
     >Your Note*</label
   >
-  <textarea class="Add-Note__input-note" id="input-title"></textarea>
+  <textarea class="Add-Note__input-note" id="input-title" required></textarea>
 </div>
 <div class="Add-Note__add-buttons">
-  <button class="Add-Note__add-button">Add Note</button
-  ><button class="Add-Note__add-button">Add Pinned Note</button>
+  <button type="submit" class="Add-Note__add-button">Add Note</button
+  ><button type="submit" class="Add-Note__add-button Add-Note__add-button--pinned">Add Pinned Note</button>
 </div>
+</form>
 </section>
 `;
 
-export const note = `<section class="section Home">
+export const Home = `<section class="section Home">
 <div class="Home__pinned">
   <h2 class="Home__mark Home__pinned-mark">PINNED</h2>
-  <article class="article pinned">
-    <h3 class="article__title">
-      Business Partners Work at Modern Office
-    </h3>
-    <p class="article__paragraph">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at
-      arcu dui.
-    </p>
-    <div class="article__meta-info">
-      <span class="article__date">Feb 8, 2021</span>
-      <button class="article__delete">Delete</button>
-    </div>
-  </article>
+  <ul class="Home__list Home__pinned-notes-list"></ul>
 </div>
 
 <div class="Home__notes">
   <h2 class="Home__mark Home__notes-mark">Notes</h2>
-  <article class="article note">
-    <h3 class="article__title">
-      Business Partners Work at Modern Office
-    </h3>
-    <p class="article__paragraph">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at
-      arcu dui.
-    </p>
-    <div class="article__meta-info">
-      <span class="article__date">Feb 8, 2021</span>
-      <button class="article__delete">Delete</button>
-    </div>
-  </article>
+  <ul class="Home__list Home__notes-list"></ul>
 </div>
-</section>`;
+</section>
+  `;
+
+export const createNotesFromList = (noteList) => {
+  let notes = '';
+  let pinnedNotes = '';
+  noteList.forEach((note) => {
+    if (note.pinned) {
+      pinnedNotes += `<li class="Home__list-item">
+        <article class="article note">
+          <h3 class="article__title">
+            ${note.title}
+          </h3>
+          <p class="article__paragraph">
+          ${note.noteContent}
+          </p>
+          <div class="article__meta-info">
+            <span class="article__date">${note.date}</span>
+            <button class="article__delete">Delete</button>
+          </div>
+        </article>
+      </li>
+      `;
+    }
+    notes += `<li class="Home__list-item ${note.pinned ? 'Home__list-item--pinned' : ''} ">
+      <article class="article note">
+        <h3 class="article__title">
+          ${note.title}
+        </h3>
+        <p class="article__paragraph">
+        ${note.noteContent}
+        </p>
+        <div class="article__meta-info">
+          <span class="article__date">${note.date}</span>
+          <button class="article__delete">Delete</button>
+        </div>
+      </article>
+    </li>
+     `;
+  });
+
+  document.querySelector('.Home__notes-list').innerHTML = notes || '';
+  document.querySelector('.Home__pinned-notes-list').innerHTML = pinnedNotes || '';
+};
 
 export const displayNote = () => {
   const noteContent = ` <section class="section Note">

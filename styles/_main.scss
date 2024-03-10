@@ -23,6 +23,10 @@
   }
 
   .Add-Note {
+    &__form {
+      @include mixins.flex-style(column, $gap: 3.5rem);
+    }
+
     &__title {
       @extend %heading;
     }
@@ -86,8 +90,16 @@
     gap: 2.2rem;
 
     &__notes,
-    &__pinned {
+    &__pinned,
+    &__list {
       @include mixins.flex-style(column, $gap: 1.6rem);
+    }
+    &__list-item {
+      padding: calc(var(--default-padding) / 2);
+      &--pinned {
+        background-color: var(--color-light-gray);
+        border-radius: calc(var(--default-radius) * 2);
+      }
     }
 
     &__mark {

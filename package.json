@@ -17,5 +17,8 @@
     "eslint-plugin-import": "^2.29.1",
     "sass": "^1.71.1",
     "vite": "^5.1.5"
+  },
+  "dependencies": {
+    "moment": "^2.30.1"
   }
 }
