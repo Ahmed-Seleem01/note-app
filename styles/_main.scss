@@ -70,6 +70,16 @@
       margin-bottom: 0.6rem;
       line-height: 2.7rem;
     }
+
+    &__add-note {
+      margin-left: auto;
+      margin-top: -4rem;
+      width: 5rem;
+      height: 5rem;
+      background-image: url(../images/Add-icon.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
   }
 
   .Home {
