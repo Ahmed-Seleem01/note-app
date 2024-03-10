@@ -1,11 +1,10 @@
 import { addNote, note } from './generatedElements';
 
 const menuIcon = document.querySelector('.header__menu-icon');
-const container = document.querySelector('.container');
+const asideElem = document.querySelector('.aside');
 const closeIcon = document.querySelector('.aside__close-icon');
 const searchIcon = document.querySelector('.header__search-icon');
 const searchContainer = document.querySelector('.header__search-container');
-const noteElement = document.querySelector('.aside__first-row');
 const addNoteElement = document.querySelector('.aside__second-row');
 const mainElement = document.querySelector('.main');
 
@@ -35,9 +34,9 @@ asideRows.forEach((row) => {
 });
 
 menuIcon.addEventListener('click', () => {
-  container.classList.toggle('container--moved');
+  asideElem.classList.toggle('aside--active');
 });
 
 closeIcon.addEventListener('click', () => {
-  container.classList.remove('container--moved');
+  asideElem.classList.remove('aside--active');
 });

@@ -10,9 +10,4 @@
   font-size: 1.6rem;
   font-weight: 400;
   margin: 0 auto;
-  transition: transform var(--transition-timing) ease;
-
-  &--moved {
-    transform: translateX(23rem);
-  }
 }
