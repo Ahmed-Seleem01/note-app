@@ -8,3 +8,4 @@ export const articleElements = document.querySelectorAll('.article');
 export const asideRowElement = document.querySelector('.aside__row');
 export const notesSection = document.querySelector('.Home__notes-list');
 export const pinnedNotesSection = document.querySelector('.Home__pinned-notes-list');
+export const asideRows = document.querySelectorAll('.aside__row');
