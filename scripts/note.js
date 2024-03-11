@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { mainElement } from './elements';
 
 const noteList = [];
 
@@ -35,7 +36,7 @@ const createNotesFromList = (notes) => {
   let pinnedNotes = '';
   notes.forEach((note, index) => {
     if (note.pinned) {
-      pinnedNotes += `<li class="Home__list-item">
+      pinnedNotes += `<li data-position =${index} class="Home__list-item">
         <article class="article note">
           <h3 class="article__title">
             ${note.title}
@@ -77,7 +78,30 @@ export const initNotes = () => {
 };
 
 export const deleteNote = (position) => {
-  console.log(position);
   noteList.splice(position, 1);
   createNotesFromList(noteList);
+};
+
+export const displayNoteSection = (position) => {
+  const note = noteList[position];
+
+  const noteContent = ` <section class="section Note">
+    <div class="Note__main-info">
+      <h2 class="Note__title">
+        ${note.title}
+      </h2>
+      <div class="Note__info">
+        <span class="Note__date">${note.date}</span> /
+        <span class="Note__author">${note.author}/span>
+      </div>
+    </div>
+    <div class="Note__content">
+      ${note.noteContent}
+    </div>
+  
+    <button class='Note__add-note' ></button>
+  </section>
+  `;
+
+  mainElement.innerHTML = noteContent;
 };

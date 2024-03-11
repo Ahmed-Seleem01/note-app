@@ -34,38 +34,3 @@ export const addNoteSection = () => `<section class="section Add-Note">
   </form>
   </section>
   `;
-
-export const displayNoteSection = () => ` <section class="section Note">
-  <div class="Note__main-info">
-    <h2 class="Note__title">
-      ABusiness Partners Work at Modern Office
-    </h2>
-    <div class="Note__info">
-      <span class="Note__date">Feb 8, 2021</span> /
-      <span class="Note__author">By Yousef</span>
-    </div>
-  </div>
-  <div class="Note__content">
-    <p class="Note__paragraph">
-      Ipsam dolorem necessitatibus officia accusamus illum? Voluptas,
-      cum vero eius ex placeat fuga quasi sint mollitia voluptatem
-      deleniti pariatur iusto autem sapiente a culpa optio iste dolorum
-      exercitationem rerum consectetur!
-    </p>
-    <p class="Note__paragraph">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam
-      quam, minima neque sed voluptatem aspernatur ab tenetur optio
-      assumenda ipsam dolore rerum provident tempora, rem laboriosam,
-      nemo itaque explicabo corrupti?
-    </p>
-    <p class="Note__paragraph">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam
-      quam, minima neque sed voluptatem aspernatur ab tenetur optio
-      assumenda ipsam dolore rerum provident tempora, rem laboriosam,
-      nemo itaque explicabo corrupti?
-    </p>
-  </div>
-
-  <button class='Note__add-note' ></button>
-</section>
-`;

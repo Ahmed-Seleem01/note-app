@@ -2,13 +2,15 @@ import {
   asideElem, asideRowElement, closeIcon, mainElement, menuIcon, searchContainer, searchIcon,
   asideRows,
 } from './elements';
-import { displayNoteSection, HomeSection, addNoteSection } from './generatedElements';
-import handleAddNote, { deleteNote, initNotes } from './note';
+import { HomeSection, addNoteSection } from './generatedElements';
+import handleAddNote, { deleteNote, displayNoteSection, initNotes } from './note';
 
 mainElement.addEventListener('click', (e) => {
-  if (e.target.parentElement.classList.contains('article')
-   || e.target.classList.contains('article')) {
-    mainElement.innerHTML = displayNoteSection();
+  let articleElm = e.target.parentElement.classList.contains('article') && e.target.parentElement;
+  articleElm = e.target.classList.contains('article') && e.target;
+  if (articleElm) {
+    const { position } = articleElm.parentElement.dataset;
+    displayNoteSection(position);
     asideRowElement.classList.remove('aside__row--active');
   }
 
