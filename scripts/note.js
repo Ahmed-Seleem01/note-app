@@ -1,35 +1,14 @@
 import moment from 'moment';
 import { mainElement } from './elements';
+import { addEventsToNotes } from './listeners';
 
-const noteList = [];
-
-const getDataFromUser = (e) => {
-  const title = document.querySelector('.Add-Note__input-title');
-  const author = document.querySelector('.Add-Note__input-author');
-  const noteContent = document.querySelector('.Add-Note__input-note');
-  const date = moment().format('MMM D, YYYY');
-  const pinned = e.submitter.classList.contains('Add-Note__add-button--pinned') || false;
-  const noteObj = {
-    title: title.value,
-    author: author.value,
-    noteContent: noteContent.value,
-    date,
-    pinned,
-  };
-
-  return noteObj;
+const saveToDB = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
 };
 
-export default function handleAddNote() {
-  const formElement = document.querySelector('.Add-Note__form');
-  formElement.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const noteObj = getDataFromUser(e);
-    noteList.push(noteObj);
-    // This clear all inputs values inside the form
-    formElement.reset();
-  });
-}
+const fetchData = (key) => JSON.parse(localStorage.getItem(key));
+
+const noteList = fetchData('notes') || [];
 
 const createNotesFromList = (notes) => {
   let allNotes = '';
@@ -52,7 +31,9 @@ const createNotesFromList = (notes) => {
       </li>
       `;
     }
-    allNotes += `<li data-position =${index} class="Home__list-item ${note.pinned ? 'Home__list-item--pinned' : ''} ">
+    allNotes += `<li data-position =${index} class="Home__list-item ${
+      note.pinned ? 'Home__list-item--pinned' : ''
+    } ">
       <article class="article note">
         <h3 class="article__title">
           ${note.title}
@@ -71,14 +52,50 @@ const createNotesFromList = (notes) => {
 
   document.querySelector('.Home__notes-list').innerHTML = allNotes || '';
   document.querySelector('.Home__pinned-notes-list').innerHTML = pinnedNotes || '';
+
+  addEventsToNotes();
 };
 
 export const initNotes = () => {
   createNotesFromList(noteList);
 };
 
+const getDataFromUser = (e) => {
+  const title = document.querySelector('.Add-Note__input-title').value;
+  const author = document.querySelector('.Add-Note__input-author').value;
+
+  const noteContent = document
+    .querySelector('.Add-Note__input-note')
+    .value.trim().split(/\n/g);
+
+  const date = moment().format('MMM D, YYYY');
+  const pinned = e.submitter.classList.contains('Add-Note__add-button--pinned') || false;
+  const noteObj = {
+    title,
+    author,
+    noteContent,
+    date,
+    pinned,
+  };
+
+  return noteObj;
+};
+
+export default function handleAddNote() {
+  const formElement = document.querySelector('.Add-Note__form');
+  formElement.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const noteObj = getDataFromUser(e);
+    noteList.push(noteObj);
+    saveToDB('notes', noteList);
+    // This clear all inputs values inside the form
+    formElement.reset();
+  });
+}
+
 export const deleteNote = (position) => {
   noteList.splice(position, 1);
+  saveToDB('notes', noteList);
   createNotesFromList(noteList);
 };
 
@@ -92,11 +109,11 @@ export const displayNoteSection = (position) => {
       </h2>
       <div class="Note__info">
         <span class="Note__date">${note.date}</span> /
-        <span class="Note__author">${note.author}/span>
+        <span class="Note__author">${note.author}</span>
       </div>
     </div>
     <div class="Note__content">
-      ${note.noteContent}
+      ${note.noteContent.map((item) => `<p>${item.trim()}</p>`).join('')}
     </div>
   
     <button class='Note__add-note' ></button>
