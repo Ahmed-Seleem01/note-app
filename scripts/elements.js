@@ -9,3 +9,4 @@ export const asideRowElement = document.querySelector('.aside__row');
 export const notesSection = document.querySelector('.Home__notes-list');
 export const pinnedNotesSection = document.querySelector('.Home__pinned-notes-list');
 export const asideRows = document.querySelectorAll('.aside__row');
+export const searchBarElement = document.querySelector('.header__input-box');

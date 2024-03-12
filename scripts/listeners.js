@@ -12,7 +12,7 @@ import {
 import { HomeSection, addNoteSection } from './generatedElements';
 import handleAddNote, { deleteNote, displayNoteSection, initNotes } from './note';
 
-export const addEventsToNotes = () => {
+export const addEventsToNotes = (arr) => {
   const notes = document.querySelectorAll('.Home__list-item');
   notes.forEach((note) => {
     note.addEventListener('click', (e) => {
@@ -22,7 +22,7 @@ export const addEventsToNotes = () => {
         return;
       }
 
-      displayNoteSection(position);
+      displayNoteSection(position, arr);
       asideRowElement.classList.remove('aside__row--active');
     });
   });

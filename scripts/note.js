@@ -1,7 +1,8 @@
 /* eslint-disable import/no-cycle */
 import moment from 'moment';
-import { mainElement } from './elements';
+import { mainElement, searchBarElement } from './elements';
 import { addEventsToNotes } from './listeners';
+import { HomeSection } from './generatedElements';
 
 const saveToDB = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
@@ -54,7 +55,7 @@ const createNotesFromList = (notes) => {
   document.querySelector('.Home__notes-list').innerHTML = allNotes || '';
   document.querySelector('.Home__pinned-notes-list').innerHTML = pinnedNotes || '';
 
-  addEventsToNotes();
+  addEventsToNotes(notes);
 };
 
 export const initNotes = () => {
@@ -100,8 +101,8 @@ export const deleteNote = (position) => {
   createNotesFromList(noteList);
 };
 
-export const displayNoteSection = (position) => {
-  const note = noteList[position];
+export const displayNoteSection = (position, arr) => {
+  const note = arr[position];
 
   const noteContent = ` <section class="section Note">
     <div class="Note__main-info">
@@ -123,3 +124,21 @@ export const displayNoteSection = (position) => {
 
   mainElement.innerHTML = noteContent;
 };
+
+const searchFeature = () => {
+  searchBarElement.addEventListener('input', () => {
+    const searchValue = searchBarElement.value.trim().toLowerCase();
+
+    let searchList = [];
+    searchList = searchValue ? noteList.filter((note) => note.title.toLowerCase().includes(searchValue)) : noteList;
+
+    if (!document.querySelector('.Home__list')) {
+      mainElement.innerHTML = HomeSection();
+      if (!searchList.length) document.querySelector('.Home').textContent = 'No results';
+    }
+
+    createNotesFromList(searchList);
+  });
+};
+
+searchFeature();
