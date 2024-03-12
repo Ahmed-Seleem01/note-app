@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import moment from 'moment';
 import { mainElement } from './elements';
 import { addEventsToNotes } from './listeners';
