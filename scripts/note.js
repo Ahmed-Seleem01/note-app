@@ -130,7 +130,8 @@ const searchFeature = () => {
     const searchValue = searchBarElement.value.trim().toLowerCase();
 
     let searchList = [];
-    searchList = searchValue ? noteList.filter((note) => note.title.toLowerCase().includes(searchValue)) : noteList;
+    searchList = searchValue
+      ? noteList.filter((note) => note.title.toLowerCase().includes(searchValue)) : noteList;
 
     if (!document.querySelector('.Home__list')) {
       mainElement.innerHTML = HomeSection();
