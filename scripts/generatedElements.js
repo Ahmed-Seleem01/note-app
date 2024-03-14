@@ -34,3 +34,41 @@ export const addNoteSection = () => `<section class="section Add-Note">
   </form>
   </section>
   `;
+
+export const headerLandmarkSmall = () => `<header class="header">
+        <div class="header__main">
+          <div class="header__menu-icon">
+            <div class="header__menu-bar"></div>
+            <div class="header__menu-bar"></div>
+            <div class="header__menu-bar"></div>
+          </div>
+          <h1 class="header__title">Almdrasa-Notes</h1>
+          <img
+            src="./images/search-icon.svg"
+            alt="search-icon"
+            class="header__search-icon"
+          />
+        </div>
+        <div class="header__search-container">
+          <input
+            class="header__input-box"
+            type="text"
+            name="search-note"
+            placeholder="Search"
+          />
+        </div>
+      </header>
+`;
+
+export const asideLandmarkSmall = () => `<div class="aside__close-icon">
+<div class="aside__close-bar"></div>
+<div class="aside__close-bar"></div>
+</div>
+<div class="aside__row aside__first-row aside__row--active">
+<div class="aside__mark-box aside__mark-box"></div>
+<h2 class="aside__title">Notes</h2>
+</div>
+<div class="aside__row aside__second-row">
+<div class="aside__mark-box"></div>
+<h2 class="aside__title">Add Notes</h2>
+</div>`;

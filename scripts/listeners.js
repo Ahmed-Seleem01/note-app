@@ -1,41 +1,33 @@
 /* eslint-disable import/no-cycle */
 import {
   asideElem,
-  asideRowElement,
-  closeIcon,
-  menuIcon,
-  searchContainer,
-  searchIcon,
-  asideRows,
   mainElement,
 } from './elements';
 import { HomeSection, addNoteSection } from './generatedElements';
-import handleAddNote, { deleteNote, displayNoteSection, initNotes } from './note';
+import handleAddNote, {
+  deleteNote, displayNoteSection, initHome, searchFeature,
+} from './note';
 
-export const addEventsToNotes = (arr) => {
-  const notes = document.querySelectorAll('.Home__list-item');
-  notes.forEach((note) => {
-    note.addEventListener('click', (e) => {
-      const { position } = note.dataset;
-      if (e.target.classList.contains('article__delete')) {
-        if (position) deleteNote(position);
-        return;
-      }
+export const addHeaderEvents = () => {
+  const searchIcon = document.querySelector('.header__search-icon');
+  const searchContainer = document.querySelector('.header__search-container');
 
-      displayNoteSection(position, arr);
-      asideRowElement.classList.remove('aside__row--active');
-    });
-  });
-};
-
-export const initEventListeners = () => {
   searchIcon.addEventListener('click', () => {
     searchContainer.classList.toggle('header__search-container--active');
   });
 
+  const menuIcon = document.querySelector('.header__menu-icon');
   menuIcon.addEventListener('click', () => {
     asideElem.classList.toggle('aside--active');
   });
+
+  const searchInputElement = document.querySelector('.header__input-box');
+  searchInputElement.addEventListener('input', searchFeature);
+};
+
+export const addAsideEvents = () => {
+  const closeIcon = document.querySelector('.aside__close-icon');
+  const asideRows = document.querySelectorAll('.aside__row');
 
   closeIcon.addEventListener('click', () => {
     asideElem.classList.remove('aside--active');
@@ -52,11 +44,29 @@ export const initEventListeners = () => {
 
       if (asideElement.classList.contains('aside__first-row')) {
         mainElement.innerHTML = HomeSection();
-        initNotes();
+        initHome();
       } else if (asideElement.classList.contains('aside__second-row')) {
         mainElement.innerHTML = addNoteSection();
         handleAddNote();
       }
+    });
+  });
+};
+
+export const addHomeEvents = (arr) => {
+  const notes = document.querySelectorAll('.Home__list-item');
+  const asideRowElement = document.querySelector('.aside__row');
+
+  notes.forEach((note) => {
+    note.addEventListener('click', (e) => {
+      const { position } = note.dataset;
+      if (e.target.classList.contains('article__delete')) {
+        if (position) deleteNote(position);
+        return;
+      }
+
+      displayNoteSection(position, arr);
+      asideRowElement.classList.remove('aside__row--active');
     });
   });
 };

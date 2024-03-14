@@ -1,5 +1,5 @@
-import { initEventListeners } from './listeners';
-import { initNotes } from './note';
+import { initAsideSmall, initHeaderSmall, initHome } from './note';
 
-initNotes();
-initEventListeners();
+initHeaderSmall();
+initAsideSmall();
+initHome();

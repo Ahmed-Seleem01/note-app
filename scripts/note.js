@@ -1,8 +1,8 @@
 /* eslint-disable import/no-cycle */
 import moment from 'moment';
-import { mainElement, searchBarElement } from './elements';
-import { addEventsToNotes } from './listeners';
-import { HomeSection } from './generatedElements';
+import { asideElem, containerElement, mainElement } from './elements';
+import { addHomeEvents, addHeaderEvents, addAsideEvents } from './listeners';
+import { HomeSection, asideLandmarkSmall, headerLandmarkSmall } from './generatedElements';
 
 const saveToDB = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
@@ -12,7 +12,7 @@ const fetchData = (key) => JSON.parse(localStorage.getItem(key));
 
 const noteList = fetchData('notes') || [];
 
-const createNotesFromList = (notes) => {
+const createNotesFromList = (notes = noteList) => {
   let allNotes = '';
   let pinnedNotes = '';
   notes.forEach((note, index) => {
@@ -55,11 +55,7 @@ const createNotesFromList = (notes) => {
   document.querySelector('.Home__notes-list').innerHTML = allNotes || '';
   document.querySelector('.Home__pinned-notes-list').innerHTML = pinnedNotes || '';
 
-  addEventsToNotes(notes);
-};
-
-export const initNotes = () => {
-  createNotesFromList(noteList);
+  addHomeEvents(notes);
 };
 
 const getDataFromUser = (e) => {
@@ -101,6 +97,11 @@ export const deleteNote = (position) => {
   createNotesFromList(noteList);
 };
 
+export const initHome = (notes) => {
+  mainElement.innerHTML = HomeSection();
+  createNotesFromList(notes);
+};
+
 export const displayNoteSection = (position, arr) => {
   const note = arr[position];
 
@@ -125,21 +126,30 @@ export const displayNoteSection = (position, arr) => {
   mainElement.innerHTML = noteContent;
 };
 
-const searchFeature = () => {
-  searchBarElement.addEventListener('input', () => {
-    const searchValue = searchBarElement.value.trim().toLowerCase();
+export const searchFeature = () => {
+  const searchInputElement = document.querySelector('.header__input-box');
+  const searchValue = searchInputElement.value.trim().toLowerCase();
+  if (!searchValue) {
+    initHome();
+  }
 
-    let searchList = [];
-    searchList = searchValue
-      ? noteList.filter((note) => note.title.toLowerCase().includes(searchValue)) : noteList;
+  let searchList = [];
+  searchList = searchValue
+    ? noteList.filter((note) => note.title.toLowerCase().includes(searchValue)) : noteList;
 
-    if (!document.querySelector('.Home__list')) {
-      mainElement.innerHTML = HomeSection();
-      if (!searchList.length) document.querySelector('.Home').textContent = 'No results';
-    }
-
-    createNotesFromList(searchList);
-  });
+  if (searchList.length) {
+    initHome(searchList);
+  } else {
+    document.querySelector('.Home').textContent = 'No results';
+  }
 };
 
-searchFeature();
+export const initHeaderSmall = () => {
+  containerElement.insertAdjacentHTML('afterbegin', headerLandmarkSmall());
+  addHeaderEvents();
+};
+
+export const initAsideSmall = () => {
+  asideElem.innerHTML = asideLandmarkSmall();
+  addAsideEvents();
+};
