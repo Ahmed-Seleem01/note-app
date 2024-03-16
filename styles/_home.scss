@@ -1,0 +1,80 @@
+@use "./mixins";
+
+%meta-info {
+  font-size: 1.3rem;
+  color: var(--color-gray);
+}
+
+.Home {
+  gap: 2.2rem;
+  padding: 0 calc(var(--default-padding) / 2);
+
+  &__notes,
+  &__pinned,
+  &__list {
+    @include mixins.flex-style(column, $gap: 1.6rem);
+  }
+
+  &__list-item {
+    //
+    padding: calc(var(--default-padding) / 2);
+    padding-left: 0;
+
+    &--pinned {
+      background-color: var(--color-light-gray);
+      border-radius: calc(var(--default-radius) * 2);
+      padding-left: calc(var(--default-padding) / 2);
+      transform: scaleX(1.1);
+    }
+  }
+
+  &__mark {
+    @include mixins.flex-style(column, $justify-content: center);
+    color: var(--color-orange);
+    font-size: 1.3rem;
+  }
+
+  &__notes-mark {
+    position: relative;
+    padding: calc(var(--default-padding) / 2) 0;
+
+    &::before {
+      content: "";
+      align-self: center;
+      position: absolute;
+      width: 100vw;
+      height: 100%;
+      border-top: 1px solid #e7e7e9;
+      border-bottom: 1px solid #e7e7e9;
+      @include mixins.desktop-screen {
+        width: 100%;
+      }
+    }
+  }
+
+  .article {
+    &__title {
+      line-height: 2.7rem;
+    }
+
+    &__paragraph {
+      @extend %meta-info;
+      margin-top: 0.5rem;
+      margin-bottom: 1.6rem;
+      line-height: 2rem;
+      height: 4rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__meta-info {
+      @extend %meta-info;
+      @include mixins.flex-style($justify-content: space-between);
+      width: 23.3rem;
+    }
+
+    &__delete {
+      color: #d82700;
+    }
+  }
+}

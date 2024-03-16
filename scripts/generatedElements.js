@@ -1,3 +1,5 @@
+import searchIcon from '../images/search-icon.svg';
+
 export const HomeSection = () => `<section class="section Home">
   <div class="Home__pinned">
     <h2 class="Home__mark Home__pinned-mark">PINNED</h2>
@@ -35,19 +37,22 @@ export const addNoteSection = () => `<section class="section Add-Note">
   </section>
   `;
 
-export const headerLandmarkSmall = () => `<header class="header">
+export const headerLandmarkSmall = () => `<header class= 'header'>
         <div class="header__main">
-          <div class="header__menu-icon">
-            <div class="header__menu-bar"></div>
-            <div class="header__menu-bar"></div>
-            <div class="header__menu-bar"></div>
-          </div>
+          <button class="header__menu-icon">
+            <div>
+              <div class="header__menu-bar"></div>
+              <div class="header__menu-bar"></div>
+              <div class="header__menu-bar"></div>
+            </div>
+          </button>
           <h1 class="header__title">Almdrasa-Notes</h1>
+          <button class="header__search-icon">
           <img
-            src="./images/search-icon.svg"
+            src="${searchIcon}"
             alt="search-icon"
-            class="header__search-icon"
-          />
+            />
+          </button>      
         </div>
         <div class="header__search-container">
           <input
@@ -57,18 +62,66 @@ export const headerLandmarkSmall = () => `<header class="header">
             placeholder="Search"
           />
         </div>
-      </header>
+    </header>
 `;
 
-export const asideLandmarkSmall = () => `<div class="aside__close-icon">
-<div class="aside__close-bar"></div>
-<div class="aside__close-bar"></div>
-</div>
-<div class="aside__row aside__first-row aside__row--active">
-<div class="aside__mark-box aside__mark-box"></div>
-<h2 class="aside__title">Notes</h2>
-</div>
-<div class="aside__row aside__second-row">
-<div class="aside__mark-box"></div>
-<h2 class="aside__title">Add Notes</h2>
-</div>`;
+export const asideLandmarkSmall = () => `<aside class='aside'>
+    <button class="aside__close-icon">
+      <div>
+        <div class="aside__close-bar"></div>
+        <div class="aside__close-bar"></div>
+      </div>
+    </button>
+
+    <div class="aside-rows">
+      <button class="aside__first-row-button">
+        <div class="aside__row aside__first-row aside__row--active">
+          <div class="aside__mark-box aside__mark-box"></div>
+          <h2 class="aside__title">Notes</h2>
+        </div>
+      </button>
+      <button class="aside__second-row-button">
+        <div class="aside__row aside__second-row">
+          <div class="aside__mark-box"></div>
+          <h2 class="aside__title">Add Notes</h2>
+        </div>
+      </button>
+    </div>
+  </aside>
+`;
+
+export const asideLandmarkLarge = () => `<aside class='aside aside-large'>
+  <header class="header">
+    <h1 class="header__title">Almdrasa-Notes</h1>
+    <div class="header__search-container">
+    <input
+      class="header__input-box"
+      type="text"
+      name="search-note"
+      placeholder="Search"
+    />
+    </div>
+  </header>
+  <div class="aside-rows">
+      <button class="aside__first-row-button">
+        <div class="aside__row aside__first-row aside__row--active">
+          <div class="aside__mark-box aside__mark-box"></div>
+          <h2 class="aside__title">Notes</h2>
+        </div>
+      </button>
+      <button class="aside__second-row-button">
+        <div class="aside__row aside__second-row">
+          <div class="aside__mark-box"></div>
+          <h2 class="aside__title">Add Notes</h2>
+        </div>
+      </button>
+    </div>
+</aside>
+`;
+
+export const asideHomeSection = () => ` <aside class="aside-home aside-home--active">
+  ${HomeSection()}
+  <button class='aside-home-drag'></button>
+</aside>`;
+
+export const mainLandmark = () => '<main class="main"></main>';

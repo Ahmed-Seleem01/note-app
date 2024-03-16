@@ -1,6 +1,7 @@
 @use "mixins";
 
 .container {
+  @include mixins.flex-style(column);
   max-width: 32rem;
   width: 100%;
   min-height: 100vh;
@@ -10,4 +11,11 @@
   font-size: 1.6rem;
   font-weight: 400;
   margin: 0 auto;
+
+  @include mixins.desktop-screen {
+    max-width: 100rem;
+    margin: 0;
+    margin-left: 25rem;
+    flex-direction: row;
+  }
 }

@@ -42,18 +42,21 @@
   }
 
   &__search-container {
+    visibility: hidden;
     position: absolute;
     z-index: -1;
     @include mixins.flex-style(
       $justify-content: center,
       $align-items: flex-end
     );
+
     background-color: var(--color-light-gray);
     width: 100%;
     transform: translateY(-25rem);
     height: 20rem;
     padding-bottom: 2rem;
     transition: transform var(--transition-timing) ease-in-out;
+
     &::before {
       content: "";
       position: absolute;
@@ -62,9 +65,22 @@
       top: 0;
       background-color: var(--color-light-gray);
       z-index: -1;
+      @include mixins.desktop-screen {
+        width: 100%;
+      }
+    }
+
+    @include mixins.desktop-screen {
+      visibility: visible;
+      position: relative;
+      transform: translateY(0);
+      width: 100%;
+      height: auto;
+      margin-top: var(--default-padding);
     }
 
     &--active {
+      visibility: visible;
       transform: translateY(-8rem);
     }
   }

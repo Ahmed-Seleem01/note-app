@@ -1,8 +1,10 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable import/no-cycle */
 import moment from 'moment';
-import { asideElem, containerElement, mainElement } from './elements';
-import { addHomeEvents, addHeaderEvents, addAsideEvents } from './listeners';
-import { HomeSection, asideLandmarkSmall, headerLandmarkSmall } from './generatedElements';
+import {
+  addHomeEvents as addNotesEvents,
+} from './listeners';
 
 const saveToDB = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
@@ -17,7 +19,7 @@ const createNotesFromList = (notes = noteList) => {
   let pinnedNotes = '';
   notes.forEach((note, index) => {
     if (note.pinned) {
-      pinnedNotes += `<li data-position =${index} class="Home__list-item">
+      pinnedNotes += `<li tabindex=0 data-position =${index} class="Home__list-item">
         <article class="article note">
           <h3 class="article__title">
             ${note.title}
@@ -33,7 +35,7 @@ const createNotesFromList = (notes = noteList) => {
       </li>
       `;
     }
-    allNotes += `<li data-position =${index} class="Home__list-item ${
+    allNotes += `<li tabindex=0 data-position =${index} class="Home__list-item ${
       note.pinned ? 'Home__list-item--pinned' : ''
     } ">
       <article class="article note">
@@ -54,14 +56,13 @@ const createNotesFromList = (notes = noteList) => {
 
   document.querySelector('.Home__notes-list').innerHTML = allNotes || '';
   document.querySelector('.Home__pinned-notes-list').innerHTML = pinnedNotes || '';
-
-  addHomeEvents(notes);
 };
 
 const getDataFromUser = (e) => {
   const title = document.querySelector('.Add-Note__input-title').value;
   const author = document.querySelector('.Add-Note__input-author').value;
 
+  // This line help in getting the input in paragraphs instead of getting one big text
   const noteContent = document
     .querySelector('.Add-Note__input-note')
     .value.trim().split(/\n/g);
@@ -79,6 +80,12 @@ const getDataFromUser = (e) => {
   return noteObj;
 };
 
+// This function create notes from the stored array and add events to these notes
+export const initNoteList = (notes = noteList) => {
+  createNotesFromList(notes);
+  addNotesEvents(notes);
+};
+
 export default function handleAddNote() {
   const formElement = document.querySelector('.Add-Note__form');
   formElement.addEventListener('submit', (e) => {
@@ -86,20 +93,19 @@ export default function handleAddNote() {
     const noteObj = getDataFromUser(e);
     noteList.push(noteObj);
     saveToDB('notes', noteList);
+    initNoteList();
     // This clear all inputs values inside the form
     formElement.reset();
   });
 }
 
 export const deleteNote = (position) => {
-  noteList.splice(position, 1);
-  saveToDB('notes', noteList);
-  createNotesFromList(noteList);
-};
-
-export const initHome = (notes) => {
-  mainElement.innerHTML = HomeSection();
-  createNotesFromList(notes);
+  const result = confirm('Do you want to delete this note?');
+  if (result) {
+    noteList.splice(position, 1);
+    saveToDB('notes', noteList);
+    initNoteList();
+  }
 };
 
 export const displayNoteSection = (position, arr) => {
@@ -123,14 +129,15 @@ export const displayNoteSection = (position, arr) => {
   </section>
   `;
 
-  mainElement.innerHTML = noteContent;
+  document.querySelector('.main').innerHTML = noteContent;
 };
 
 export const searchFeature = () => {
   const searchInputElement = document.querySelector('.header__input-box');
   const searchValue = searchInputElement.value.trim().toLowerCase();
+
   if (!searchValue) {
-    initHome();
+    initNoteList();
   }
 
   let searchList = [];
@@ -138,18 +145,9 @@ export const searchFeature = () => {
     ? noteList.filter((note) => note.title.toLowerCase().includes(searchValue)) : noteList;
 
   if (searchList.length) {
-    initHome(searchList);
+    initNoteList(searchList);
   } else {
-    document.querySelector('.Home').textContent = 'No results';
+    document.querySelector('.Home__notes-list').textContent = 'No results';
+    document.querySelector('.Home__pinned-notes-list').textContent = 'No results';
   }
-};
-
-export const initHeaderSmall = () => {
-  containerElement.insertAdjacentHTML('afterbegin', headerLandmarkSmall());
-  addHeaderEvents();
-};
-
-export const initAsideSmall = () => {
-  asideElem.innerHTML = asideLandmarkSmall();
-  addAsideEvents();
 };
