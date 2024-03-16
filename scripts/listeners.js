@@ -7,6 +7,7 @@ import handleAddNote, {
 const handleAsideRows = (row) => {
   // Add The event to the button
   const mainElement = document.querySelector('.main');
+  const asideHomeElement = document.querySelector('.aside-home');
 
   row.parentElement.addEventListener('click', () => {
     const asideElement = row;
@@ -17,9 +18,14 @@ const handleAsideRows = (row) => {
     asideElement.classList.add('aside__row--active');
 
     if (asideElement.classList.contains('aside__first-row')) {
-      mainElement.innerHTML = HomeSection();
-      initNoteList();
+      if (asideHomeElement) {
+        asideHomeElement.classList.add('aside-home--active');
+      } else {
+        mainElement.innerHTML = HomeSection();
+        initNoteList();
+      }
     } else if (asideElement.classList.contains('aside__second-row')) {
+      if (asideHomeElement) asideHomeElement.classList.remove('aside-home--active');
       mainElement.innerHTML = addNoteSection();
       handleAddNote();
     }
