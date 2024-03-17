@@ -3,9 +3,9 @@ import { addAsideEvents, addAsideLargeEvents, addHeaderEvents } from './listener
 import { initNoteList } from './note';
 
 // Display the layout according to screen size
-const handleScreenSizeChange = () => {
+const handleScreenSizeChange = (e) => {
   containerElement.innerHTML = '';
-  if (window.innerWidth >= 560) {
+  if (e.matches) {
     createElementsLargeLayout();
     addAsideLargeEvents();
     initNoteList();
@@ -17,10 +17,11 @@ const handleScreenSizeChange = () => {
   }
 };
 
-// Init the layout in first load
-handleScreenSizeChange();
+// Create media query object
+const mediaQuery = window.matchMedia('(min-width: 560px)');
 
-// Handling the layout according to change in screen size
-// window.addEventListener('resize', () => {
-//   handleScreenSizeChange();
-// });
+// Init the layout in first load
+handleScreenSizeChange(mediaQuery);
+
+// Handle the change in mediaquery
+mediaQuery.addEventListener('change', handleScreenSizeChange);
