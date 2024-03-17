@@ -111,3 +111,10 @@
     }
   }
 }
+
+.aside-large {
+  & > *,
+  .header__search-container > * {
+    visibility: visible;
+  }
+}

@@ -21,6 +21,6 @@ const handleScreenSizeChange = () => {
 handleScreenSizeChange();
 
 // Handling the layout according to change in screen size
-window.addEventListener('resize', () => {
-  handleScreenSizeChange();
-});
+// window.addEventListener('resize', () => {
+//   handleScreenSizeChange();
+// });
