@@ -120,7 +120,7 @@ export const displayNoteSection = (position, arr) => {
       </h2>
       <div class="Note__info">
         <span class="Note__date">${note.date}</span> /
-        <span class="Note__author">${note.author}</span>
+        <span class="Note__author">By ${note.author}</span>
       </div>
     </div>
     <div class="Note__content">
