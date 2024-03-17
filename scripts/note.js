@@ -5,6 +5,7 @@ import moment from 'moment';
 import {
   addHomeEvents as addNotesEvents,
 } from './listeners';
+import { HomeSection } from './generatedElements';
 
 const saveToDB = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
@@ -146,6 +147,7 @@ export const searchFeature = (e) => {
     ? noteList.filter((note) => note.title.toLowerCase().includes(searchValue)) : noteList;
 
   if (searchList.length) {
+    if (!document.querySelector('.Home')) document.querySelector('.main').innerHTML = HomeSection();
     initNoteList(searchList);
   } else {
     document.querySelector('.Home__notes-list').textContent = 'No results';
