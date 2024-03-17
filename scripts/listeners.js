@@ -4,6 +4,11 @@ import handleAddNote, {
   deleteNote, displayNoteSection, initNoteList, searchFeature,
 } from './note';
 
+const addSearchEvents = () => {
+  const searchInputElement = document.querySelector('.header__input-box');
+  searchInputElement.addEventListener('input', searchFeature);
+};
+
 const handleAsideRows = (row) => {
   // Add The event to the button
   const mainElement = document.querySelector('.main');
@@ -46,8 +51,7 @@ export const addHeaderEvents = () => {
     asideElem2.classList.toggle('aside--active');
   });
 
-  const searchInputElement = document.querySelector('.header__input-box');
-  searchInputElement.addEventListener('input', searchFeature);
+  addSearchEvents();
 };
 
 export const addAsideEvents = () => {
@@ -63,11 +67,8 @@ export const addAsideEvents = () => {
 };
 
 export const addAsideLargeEvents = () => {
-  const searchInputElement = document.querySelector('.header__input-box');
   const asideRows = document.querySelectorAll('.aside__row');
-
-  searchInputElement.addEventListener('input', searchFeature);
-
+  addSearchEvents();
   asideRows.forEach((row) => handleAsideRows(row));
 };
 

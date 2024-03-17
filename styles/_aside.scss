@@ -1,6 +1,10 @@
 @use "./mixins";
 .aside {
-  visibility: hidden;
+  // hide children from accessibility when there are hidden
+  & > * {
+    visibility: hidden;
+  }
+
   padding: 2rem 1.6rem;
   background-color: var(--color-light-gray);
   width: 26rem;
@@ -24,7 +28,11 @@
   }
 
   &--active {
-    visibility: visible;
+    // Active accessibility when there appear
+    & > * {
+      visibility: visible;
+    }
+
     transform: translateX(0);
   }
 
@@ -74,9 +82,10 @@
 }
 
 .aside-home {
-  min-height: 100vh;
+  height: 100vh;
   position: relative;
   overflow-x: hidden;
+  overflow-y: auto;
   @include mixins.desktop-screen {
     width: 0rem;
     transform: translateX(-32rem);

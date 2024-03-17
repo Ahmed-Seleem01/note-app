@@ -42,7 +42,11 @@
   }
 
   &__search-container {
-    visibility: hidden;
+    // hide children from accessibility when there are hidden
+    & > * {
+      visibility: hidden;
+    }
+
     position: absolute;
     z-index: -1;
     @include mixins.flex-style(
@@ -80,7 +84,10 @@
     }
 
     &--active {
-      visibility: visible;
+      // Active accessibility when there appear
+      & > * {
+        visibility: visible;
+      }
       transform: translateY(-8rem);
     }
   }

@@ -132,12 +132,13 @@ export const displayNoteSection = (position, arr) => {
   document.querySelector('.main').innerHTML = noteContent;
 };
 
-export const searchFeature = () => {
-  const searchInputElement = document.querySelector('.header__input-box');
+export const searchFeature = (e) => {
+  const searchInputElement = e.target;
   const searchValue = searchInputElement.value.trim().toLowerCase();
 
   if (!searchValue) {
     initNoteList();
+    return;
   }
 
   let searchList = [];
