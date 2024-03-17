@@ -1,0 +1,18 @@
+.message-modal {
+  padding: var(--default-padding);
+  background-color: #42a342;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  z-index: 100;
+  font-family: Inter;
+  font-size: 1.8rem;
+  font-weight: 700;
+    transform: translate(-50%, -100%);
+  transition: transform var(--transition-timing) ease-in-out;
+  border-radius: var(--default-radius);
+
+  &--active {
+    transform: translate(-50%, 105%);
+  }
+}

@@ -4,6 +4,13 @@ import handleAddNote, {
   deleteNote, displayNoteSection, initNoteList, searchFeature,
 } from './note';
 
+export const appearMessage = (message) => {
+  const messageContainer = document.querySelector('.message-modal');
+  messageContainer.classList.add('message-modal--active');
+  messageContainer.textContent = message;
+  setTimeout(() => messageContainer.classList.remove('message-modal--active'), 2000);
+};
+
 const addSearchEvents = () => {
   const searchInputElement = document.querySelector('.header__input-box');
   searchInputElement.addEventListener('input', searchFeature);
@@ -80,7 +87,10 @@ export const addHomeEvents = (arr) => {
     if (e.key === 'Enter' || e.type === 'click') {
       const { position } = note.dataset;
       if (e.target.classList.contains('article__delete')) {
-        if (position) deleteNote(position);
+        if (position) {
+          deleteNote(position);
+          appearMessage('The note is deleted');
+        }
         return;
       }
 

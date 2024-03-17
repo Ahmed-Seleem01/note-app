@@ -3,7 +3,7 @@
 /* eslint-disable import/no-cycle */
 import moment from 'moment';
 import {
-  addHomeEvents as addNotesEvents,
+  addHomeEvents as addNotesEvents, appearMessage,
 } from './listeners';
 import { HomeSection } from './generatedElements';
 
@@ -94,6 +94,7 @@ export default function handleAddNote() {
     const noteObj = getDataFromUser(e);
     noteList.push(noteObj);
     saveToDB('notes', noteList);
+    appearMessage('The note is added');
     if (document.querySelector('.aside-home')) initNoteList();
     // This clear all inputs values inside the form
     formElement.reset();
@@ -126,9 +127,9 @@ export const displayNoteSection = (position, arr) => {
       ${note.noteContent.map((item) => `<p>${item.trim()}</p>`).join('')}
     </div>
   
-    <button class='Note__add-note' ></button>
-  </section>
-  `;
+    </section>
+    `;
+    // <button class='Note__add-note' ></button>
 
   document.querySelector('.main').innerHTML = noteContent;
 };

@@ -84,8 +84,6 @@
 .aside-home {
   height: 100vh;
   position: relative;
-  // overflow-x: hidden;
-  // overflow-y: auto;
   border-right: 1px solid #e7e7e9;
   @include mixins.desktop-screen {
     width: 0rem;
