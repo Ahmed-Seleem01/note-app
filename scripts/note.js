@@ -93,7 +93,7 @@ export default function handleAddNote() {
     const noteObj = getDataFromUser(e);
     noteList.push(noteObj);
     saveToDB('notes', noteList);
-    initNoteList();
+    if (document.querySelector('.aside-home')) initNoteList();
     // This clear all inputs values inside the form
     formElement.reset();
   });
