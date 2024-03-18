@@ -19,8 +19,9 @@ const createNotesFromList = (notes = noteList) => {
   let allNotes = '';
   let pinnedNotes = '';
   notes.forEach((note, index) => {
+    const position = note.originPosition || note.originPosition === 0 ? note.originPosition : index;
     if (note.pinned) {
-      pinnedNotes += `<li tabindex=0 data-position =${index} class="Home__list-item">
+      pinnedNotes += `<li tabindex=0 data-position =${position} class="Home__list-item">
         <article class="article note">
           <h3 class="article__title">
             ${note.title}
@@ -36,7 +37,7 @@ const createNotesFromList = (notes = noteList) => {
       </li>
       `;
     }
-    allNotes += `<li tabindex=0 data-position =${index} class="Home__list-item ${
+    allNotes += `<li tabindex=0 data-position =${position} class="Home__list-item ${
       note.pinned ? 'Home__list-item--pinned' : ''
     } ">
       <article class="article note">
@@ -144,9 +145,14 @@ export const searchFeature = (e) => {
     return;
   }
 
-  let searchList = [];
-  searchList = searchValue
-    ? noteList.filter((note) => note.title.toLowerCase().includes(searchValue)) : noteList;
+  const searchList = searchValue
+    ? noteList.map((note, index) => {
+      if (note.title.toLowerCase().includes(searchValue)) {
+        return { ...note, originPosition: index };
+      }
+      return undefined;
+    }).filter((note) => note)
+    : noteList;
 
   if (searchList.length) {
     if (!document.querySelector('.Home')) document.querySelector('.main').innerHTML = HomeSection();
