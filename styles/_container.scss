@@ -2,8 +2,9 @@
 
 .container {
   @include mixins.flex-style(column);
-  max-width: 32rem;
-  width: 100%;
+  // max-width: var(--mobile-width);
+  // width: 100%;
+  width: clamp(30rem, 85vw, var(--mobile-width));
   min-height: 100vh;
   color: var(--color-very-dark-gray);
   padding: 0 1.6rem;
@@ -13,7 +14,7 @@
   margin: 0 auto;
 
   @include mixins.desktop-screen {
-    max-width: 100rem;
+    width: clamp(56rem, 80vw, 100vw);
     margin: 0;
     margin-left: 25rem;
     flex-direction: row;

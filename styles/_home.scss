@@ -8,8 +8,12 @@
 .Home {
   gap: 2.2rem;
   padding: 0 var(--default-padding);
-  overflow: auto;
-  height: 100vh;
+ 
+  @include mixins.desktop-screen{
+    overflow: auto;
+    height: 100vh;
+  }
+  
   &__notes,
   &__pinned,
   &__list {
