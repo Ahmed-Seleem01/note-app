@@ -3,7 +3,7 @@
 /* eslint-disable import/no-cycle */
 import moment from 'moment';
 import {
-  addHomeEvents as addNotesEvents, appearMessage,
+  addHomeEvents, appearMessage,
 } from './listeners';
 import { HomeSection } from './generatedElements';
 
@@ -85,7 +85,7 @@ const getDataFromUser = (e) => {
 // This function create notes from the stored array and add events to these notes
 export const initNoteList = (notes = noteList) => {
   createNotesFromList(notes);
-  addNotesEvents(notes);
+  addHomeEvents();
 };
 
 export default function handleAddNote() {

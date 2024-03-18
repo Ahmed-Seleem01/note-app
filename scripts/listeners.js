@@ -79,7 +79,7 @@ export const addAsideLargeEvents = () => {
   asideRows.forEach((row) => handleAsideRows(row));
 };
 
-export const addHomeEvents = (arr) => {
+export const addHomeEvents = () => {
   const notes = document.querySelectorAll('.Home__list-item');
   const asideRowElement = document.querySelector('.aside__row');
 
