@@ -76,6 +76,7 @@
     &__meta-info {
       @extend %meta-info;
       @include mixins.flex-style($justify-content: space-between);
+      padding-right: var(--default-padding);
     }
 
     &__delete {
