@@ -112,7 +112,7 @@ export const deleteNote = (position) => {
   }
 };
 
-export const displayNoteSection = (position, arr) => {
+export const displayNoteSection = (position, arr = noteList) => {
   const note = arr[position];
 
   const noteContent = ` <section class="section Note">
@@ -140,6 +140,8 @@ export const searchFeature = (e) => {
   const searchInputElement = e.target;
   const searchValue = searchInputElement.value.trim().toLowerCase();
 
+  if (!document.querySelector('.Home')) document.querySelector('.main').innerHTML = HomeSection();
+
   if (!searchValue) {
     initNoteList();
     return;
@@ -155,7 +157,6 @@ export const searchFeature = (e) => {
     : noteList;
 
   if (searchList.length) {
-    if (!document.querySelector('.Home')) document.querySelector('.main').innerHTML = HomeSection();
     initNoteList(searchList);
   } else {
     document.querySelector('.Home__notes-list').textContent = 'No results';

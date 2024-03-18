@@ -93,7 +93,7 @@ export const addHomeEvents = (arr) => {
         return;
       }
 
-      displayNoteSection(position, arr);
+      displayNoteSection(position);
       asideRowElement.classList.remove('aside__row--active');
     }
   };
