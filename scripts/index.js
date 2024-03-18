@@ -18,7 +18,7 @@ const handleScreenSizeChange = (e) => {
 };
 
 // Create media query object
-const mediaQuery = window.matchMedia('(min-width: 560px)');
+const mediaQuery = window.matchMedia('(min-width: 768px)');
 
 // Init the layout in first load
 handleScreenSizeChange(mediaQuery);
