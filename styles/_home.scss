@@ -8,12 +8,12 @@
 .Home {
   gap: 2.2rem;
   padding: 0 var(--default-padding);
- 
-  @include mixins.desktop-screen{
+
+  @include mixins.desktop-screen {
     overflow: auto;
     height: 100vh;
   }
-  
+
   &__notes,
   &__pinned,
   &__list {
@@ -76,7 +76,6 @@
     &__meta-info {
       @extend %meta-info;
       @include mixins.flex-style($justify-content: space-between);
-      width: 23.3rem;
     }
 
     &__delete {
