@@ -107,6 +107,7 @@ export const deleteNote = (position) => {
     noteList.splice(position, 1);
     saveToDB('notes', noteList);
     initNoteList();
+    appearMessage('The note is deleted');
   }
 };
 

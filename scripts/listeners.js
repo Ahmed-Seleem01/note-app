@@ -89,7 +89,6 @@ export const addHomeEvents = (arr) => {
       if (e.target.classList.contains('article__delete')) {
         if (position) {
           deleteNote(position);
-          appearMessage('The note is deleted');
         }
         return;
       }
