@@ -2,6 +2,8 @@
 
 The Note App is a simple and intuitive web application designed to help users organize their thoughts, tasks, and ideas efficiently. Built using HTML, SASS, and JavaScript, this app provides a seamless user experience with a clean and responsive interface.
 
+live version: [live](https://ahmed-seleem01.github.io/note-app/)
+
 ## Features
 
 - **Create Notes**: Easily create new notes with a single click. Add titles and content to keep track of your thoughts and tasks.
